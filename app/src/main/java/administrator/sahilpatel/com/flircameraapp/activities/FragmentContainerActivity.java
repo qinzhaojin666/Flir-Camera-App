@@ -1,5 +1,6 @@
 package administrator.sahilpatel.com.flircameraapp.activities;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -96,8 +97,10 @@ public class FragmentContainerActivity extends AppCompatActivity implements OnFo
             openNextFragment(nextPage);
         }
         else {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("Order",order);
+            setResult(RESULT_OK,resultIntent);
             finish();
         }
-
     }
 }

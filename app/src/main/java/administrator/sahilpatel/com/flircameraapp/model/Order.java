@@ -1,5 +1,6 @@
 package administrator.sahilpatel.com.flircameraapp.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import java.util.Map;
  */
 
 //@JsonIgnoreProperties(ignoreUnknown = true)
-public class Order {
+public class Order implements Serializable{
 
     private String workOrderNumber;
     private String workOrderTitle;
@@ -16,6 +17,8 @@ public class Order {
     private String customerName;
     private String customerAddress;
     private String assignedTo;
+
+    private static final long serialVersionUID = 5462223600l;
 
     private List<ImagePair> images;
 

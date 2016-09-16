@@ -9,10 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import administrator.sahilpatel.com.flircameraapp.R;
+import administrator.sahilpatel.com.flircameraapp.model.Order;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final int REQUEST_FORM_SUBMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent openIntent = new Intent(MainActivity.this,FragmentContainerActivity.class);
-                startActivity(openIntent);
+                startActivityForResult(openIntent,REQUEST_FORM_SUBMISSION);
             }
         });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RESULT_OK) {
+            Order order = (Order)data.getSerializableExtra("Order");
+
+            Toast.makeText(MainActivity.this, order.getWorkOrderTitle(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
