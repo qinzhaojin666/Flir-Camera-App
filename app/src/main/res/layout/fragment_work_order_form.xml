@@ -1,0 +1,148 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.WorkOrderFormFragment">
+
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+
+            android:id="@+id/button_close_order"
+            android:src="@drawable/ic_close_red_36dp"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/button_close_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputLayout
+
+                android:id="@+id/container_field_work_order_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/field_work_order_title"
+                    android:hint="Work order title"
+                    android:imeActionId="@+id/next_field"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/container_field_work_order_title"
+                android:id="@+id/container_field_work_order_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/field_work_order_number"
+                    android:hint="Work order number"
+                    android:imeActionId="@+id/next_field"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/container_field_work_order_number"
+                android:id="@+id/container_field_customer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/field_customer_name"
+                    android:hint="Customer name"
+                    android:imeActionId="@+id/next_field"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapCharacters"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/container_field_customer_name"
+                android:id="@+id/container_field_customer_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/field_customer_address"
+                    android:hint="Customer Address"
+                    android:imeActionId="@+id/next_field"
+                    android:imeOptions="actionNext"
+                    android:inputType="textMultiLine|textAutoCorrect"
+                    android:maxLines="4"
+                    android:singleLine="true"
+                    android:minHeight="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/container_field_customer_address"
+                android:id="@+id/container_field_work_order_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/field_work_order_description"
+                    android:hint="Work order description"
+
+                    android:imeActionId="@+id/next_field"
+                    android:imeOptions="actionNext"
+                    android:inputType="textMultiLine|textAutoCorrect"
+                    android:maxLines="5"
+                    android:singleLine="true"
+                    android:minHeight="120dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_below="@id/container_field_work_order_description"
+                android:layout_marginTop="20dp"
+                android:id="@+id/button_next"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentRight="true"
+                android:text="NEXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</FrameLayout>

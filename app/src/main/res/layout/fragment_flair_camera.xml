@@ -1,0 +1,75 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FlirCameraFragment">
+
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/page_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/button_close_order"
+                android:src="@drawable/ic_close_red_36dp"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/field_order_id"
+                android:text="WO# 445566"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/button_close_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/page_header"
+            android:id="@+id/camera_container"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+        <ImageButton
+            android:id="@+id/button_image_capture"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/camera_container"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_photo_camera_black_48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:scrollbars="horizontal"
+            android:id="@+id/flair_recycler_view"
+            android:layout_below="@id/button_image_capture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="NEXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</FrameLayout>

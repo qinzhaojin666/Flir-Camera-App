@@ -1,0 +1,115 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="administrator.sahilpatel.com.flircameraapp.fragments.WorkOrderClosure">
+
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/page_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/button_close_order"
+                android:src="@drawable/ic_close_red_36dp"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/field_order_id"
+                android:text="WO# 445566"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/button_close_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/page_header"
+            android:id="@+id/container_field_work_order_closure_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/field_work_order_closure_notes"
+                android:hint="Work order closure notes / fix notes"
+
+                android:imeActionId="@+id/next_field"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine|textAutoCorrect"
+                android:maxLines="8"
+                android:singleLine="true"
+                android:minHeight="180dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/container_field_add_images"
+            android:layout_below="@id/container_field_work_order_closure_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/label_add_images"
+                android:text="Add images (thermal + standard)"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_below="@id/label_add_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/button_take_images"
+                    android:layout_width="50dp"
+                    app:backgroundTint="@android:color/holo_blue_dark"
+                    android:layout_height="50dp"
+                    android:layout_gravity="bottom|start"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:src="@drawable/ic_add_white_24dp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="20dp"
+                    android:scrollbars="horizontal"
+                    android:id="@+id/add_more_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </android.support.design.widget.CoordinatorLayout>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button_save_close_work_order"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:text="SAVE AND CLOSE WORK ORDER"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+</FrameLayout>

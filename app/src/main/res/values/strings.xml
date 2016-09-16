@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Flir Camera App</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_dialog_yes">YES</string>
+    <string name="label_dialog_wait">WAIT</string>
+    <string name="label_capture">Capture</string>
+    <string name="request_permission">This sample needs camera permission.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+</resources>

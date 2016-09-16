@@ -1,0 +1,225 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="administrator.sahilpatel.com.flircameraapp.fragments.WorkOrderSummary">
+
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/page_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/button_close_order"
+                android:src="@drawable/ic_close_red_36dp"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/field_order_id"
+                android:text="WO# 445566"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/button_close_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/page_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/page_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/container_summary_work_order_title"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/label_work_order_title"
+                    android:text="Work order title"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/field_summary_work_order_title"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18dp"
+                    android:layout_below="@id/label_work_order_title"
+                    android:text="Title of the work order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/container_summary_work_order_number"
+                android:layout_below="@id/container_summary_work_order_title"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/label_work_order_number"
+                    android:text="Work order number"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/field_summary_work_order_number"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18dp"
+                    android:layout_below="@id/label_work_order_number"
+                    android:text="WO #445566"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/container_summary_customer_name"
+                android:layout_below="@id/container_summary_work_order_number"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/label_customer_name"
+                    android:text="Customer Name"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/field_summary_customer_name"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18dp"
+                    android:layout_below="@id/label_customer_name"
+                    android:text="John Doe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/container_summary_customer_address"
+                android:layout_below="@id/container_summary_customer_name"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/label_customer_address"
+                    android:text="Customer Address"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/field_summary_customer_address"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18dp"
+                    android:lines="4"
+                    android:layout_below="@id/label_customer_address"
+                    android:text="Address of the customer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/container_summary_work_order_description"
+                android:layout_below="@id/container_summary_customer_address"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/label_work_order_description"
+                    android:text="Work order description"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/field_summary_work_order_description"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18dp"
+                    android:layout_below="@id/label_work_order_description"
+                    android:lines="4"
+                    android:text="Some sort of multiline work order description goes here."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/container_summary_images"
+                android:layout_below="@id/container_summary_work_order_description"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/label_summary_images"
+                    android:text="Images"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:scrollbars="horizontal"
+                    android:id="@+id/summary_recycler_view"
+                    android:layout_below="@id/label_summary_images"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+            <Button
+                android:layout_below="@id/container_summary_images"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/button_summary_submit_order"
+                android:text="SUBMIT WORK ORDER"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</FrameLayout>
