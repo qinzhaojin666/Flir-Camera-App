@@ -1,12 +1,19 @@
 package administrator.sahilpatel.com.flircameraapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by Administrator on 9/16/2016.
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ImagePair {
 
     private String flirImage;
     private String regularImage;
+
+    public ImagePair() {
+    }
 
     public ImagePair(String flirImage, String regularImage) {
         this.flirImage = flirImage;

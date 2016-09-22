@@ -9,4 +9,5 @@
     <string name="label_capture">Capture</string>
     <string name="request_permission">This sample needs camera permission.</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="work_order_suffix">WO#: </string>
 </resources>

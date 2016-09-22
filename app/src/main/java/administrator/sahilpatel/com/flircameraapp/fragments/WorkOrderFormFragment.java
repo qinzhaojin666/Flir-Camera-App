@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import administrator.sahilpatel.com.flircameraapp.R;
-import administrator.sahilpatel.com.flircameraapp.activities.FragmentContainerActivity;
+import administrator.sahilpatel.com.flircameraapp.activities.AddOrderFragmentContainerActivity;
 import administrator.sahilpatel.com.flircameraapp.listeners.OnFormFilled;
 import administrator.sahilpatel.com.flircameraapp.model.Order;
 
@@ -114,7 +114,7 @@ public class WorkOrderFormFragment extends Fragment {
          * Sending back the order object, a boolean to represent if there
          * is another fragment after it, and the name of next fragment.
          */
-        mCallback.onCompletion(order,true, FragmentContainerActivity.FRAGMENT_TYPE_FLIR_CAMERA);
+        mCallback.onCompletion(order,true, AddOrderFragmentContainerActivity.FRAGMENT_TYPE_FLIR_CAMERA);
     }
 
     private void showCloseWindowDialog() {

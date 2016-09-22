@@ -8,4 +8,5 @@ import administrator.sahilpatel.com.flircameraapp.model.Order;
 public interface OnFormFilled {
 
     void onCompletion(Order order,boolean hasNextPage, String nextPage);
+    void onClickedCancel(String reason);
 }

@@ -103,6 +103,7 @@
             android:id="@+id/button_save_close_work_order"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
+            android:textColor="@android:color/holo_red_dark"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:text="SAVE AND CLOSE WORK ORDER"

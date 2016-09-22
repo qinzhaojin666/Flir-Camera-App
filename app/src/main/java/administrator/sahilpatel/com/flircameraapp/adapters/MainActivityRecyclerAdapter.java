@@ -25,6 +25,10 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
     private static final String TAG = "MainActivityRecyclerAdapter";
     private List<Order> orderList;
 
+    public MainActivityRecyclerAdapter(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item_layout,parent,false);
@@ -37,8 +41,11 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
         Order order = orderList.get(position);
 
         holder.work_order_title.setText(order.getWorkOrderTitle());
-        holder.work_order_number.setText(order.getWorkOrderNumber());
-        holder.work_order_assigned_to.setText(order.getAssignedTo());
+        holder.work_order_number.setText("WO#: "+order.getWorkOrderNumber());
+        if(order.getAssignedTo() == null){
+            order.setAssignedTo("Not assigned");
+        }
+        holder.work_order_assigned_to.setText("Assigned to: "+order.getAssignedTo());
 
         ImagePair firstImage = order.getImages().get(0);
         Bitmap scaled = this.scaleDownImage(BitmapFactory.decodeFile(firstImage.getFlirImage()));
@@ -66,8 +73,8 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
             flir_image = (ImageView)itemView.findViewById(R.id.field_order_image_flair);
             regular_image = (ImageView)itemView.findViewById(R.id.field_order_image_regular);
             work_order_title = (TextView)itemView.findViewById(R.id.field_item_work_order_title);
-            work_order_number = (TextView)itemView.findViewById(R.id.field_work_order_number);
-            work_order_assigned_to = (TextView)itemView.findViewById(R.id.field_order_work_order_assigned_to);
+            work_order_number = (TextView)itemView.findViewById(R.id.field_item_work_order_number);
+            work_order_assigned_to = (TextView)itemView.findViewById(R.id.field_item_work_order_assigned_to);
 
         }
     }

@@ -36,16 +36,14 @@
         </RelativeLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:layout_below="@id/page_header"
             android:id="@+id/container_field_work_order_updates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <EditText
                 android:id="@+id/field_work_order_updates"
                 android:hint="Work order updates"
-
                 android:imeActionId="@+id/next_field"
                 android:imeOptions="actionNext"
                 android:inputType="textMultiLine|textAutoCorrect"

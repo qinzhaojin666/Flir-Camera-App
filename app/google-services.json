@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "760665128779",
+    "firebase_url": "https://flircameraapp.firebaseio.com",
+    "project_id": "flircameraapp",
+    "storage_bucket": "flircameraapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760665128779:android:036968e98c5df1db",
+        "android_client_info": {
+          "package_name": "administrator.sahilpatel.com.flircameraapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760665128779-sb92re71o2qj8ifhlq6qm19bl025fgdf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "administrator.sahilpatel.com.flircameraapp",
+            "certificate_hash": "61347442ADF9B3A4A07101EB897D467DBDD97CFE"
+          }
+        },
+        {
+          "client_id": "760665128779-2v6ob4hp2nr1p8bs6590359vgolfkktr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmOBjSHyBmyY6GjiMgtW2P8XnR_IqZI1s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760665128779-2v6ob4hp2nr1p8bs6590359vgolfkktr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

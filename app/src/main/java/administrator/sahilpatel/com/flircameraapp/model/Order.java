@@ -1,16 +1,21 @@
 package administrator.sahilpatel.com.flircameraapp.model;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-/**
- * Created by Administrator on 9/16/2016.
- */
 
-//@JsonIgnoreProperties(ignoreUnknown = true)
-public class Order implements Serializable{
 
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Order{
+
+    public static final String STATUS_OPEN = "OPEN";
+    public static final String STAUS_CLOSED ="CLOSED";
+
+    private String orderId;
     private String workOrderNumber;
     private String workOrderTitle;
     private String workOrderDescription;
@@ -18,11 +23,17 @@ public class Order implements Serializable{
     private String customerAddress;
     private String assignedTo;
 
-    private static final long serialVersionUID = 5462223600l;
+    private String status;
+
+    private List<Update> updates;
+    private Closure closure;
 
     private List<ImagePair> images;
 
     public Order() {
+        images = new ArrayList<>();
+        updates = new ArrayList<>();
+        status = STATUS_OPEN;
     }
 
     public Order(String workOrderTitle, String workOrderNumber, String workOrderDescription,
@@ -32,6 +43,41 @@ public class Order implements Serializable{
         this.workOrderDescription = workOrderDescription;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
+
+        images = new ArrayList<>();
+        updates = new ArrayList<>();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Closure getClosure() {
+        return closure;
+    }
+
+    public void setClosure(Closure closure) {
+        this.closure = closure;
+    }
+
+    public List<Update> getUpdates() {
+        return updates;
+    }
+
+    public void setUpdates(List<Update> updates) {
+        this.updates = updates;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getAssignedTo() {

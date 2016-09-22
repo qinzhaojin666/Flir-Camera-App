@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import administrator.sahilpatel.com.flircameraapp.R;
-import administrator.sahilpatel.com.flircameraapp.activities.FragmentContainerActivity;
 import administrator.sahilpatel.com.flircameraapp.adapters.MyRecyclerAdapter;
 import administrator.sahilpatel.com.flircameraapp.listeners.OnFormFilled;
 import administrator.sahilpatel.com.flircameraapp.model.Order;
@@ -69,6 +68,8 @@ public class WorkOrderSummary extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         setSummaryData();
+
+        ((TextView)rootView.findViewById(R.id.field_order_id)).setText(order.getWorkOrderNumber());
 
         rootView.findViewById(R.id.button_summary_submit_order).setOnClickListener(new View.OnClickListener() {
             @Override

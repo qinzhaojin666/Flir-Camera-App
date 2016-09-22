@@ -3,6 +3,7 @@
     android:layout_margin="5dp"
     android:orientation="horizontal"
     android:layout_height="80dp"
+    android:layout_marginRight="30dp"
     android:layout_width="wrap_content">
 
 
@@ -11,7 +12,7 @@
         android:id="@+id/img_flir_thumbnail"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="match_parent"/>
 
     <ImageView
@@ -19,6 +20,6 @@
         android:id="@+id/img_regular_thumbnail"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="match_parent"/>
 </LinearLayout>

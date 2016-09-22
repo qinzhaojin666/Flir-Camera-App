@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -23,10 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import administrator.sahilpatel.com.flircameraapp.R;
-import administrator.sahilpatel.com.flircameraapp.activities.FragmentContainerActivity;
+import administrator.sahilpatel.com.flircameraapp.activities.AddOrderFragmentContainerActivity;
 import administrator.sahilpatel.com.flircameraapp.adapters.MyRecyclerAdapter;
 import administrator.sahilpatel.com.flircameraapp.camera.CameraFragment;
 import administrator.sahilpatel.com.flircameraapp.listeners.ImageCaptureListener;
+import administrator.sahilpatel.com.flircameraapp.listeners.OnCameraStarted;
 import administrator.sahilpatel.com.flircameraapp.listeners.OnFormFilled;
 import administrator.sahilpatel.com.flircameraapp.model.ImagePair;
 import administrator.sahilpatel.com.flircameraapp.model.Order;
@@ -42,7 +44,7 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
 
 
     private Order order;
-    private OnFormFilled mCallback;
+    private OnCameraStarted mCallback;
     View rootView;
 
     private List<ImagePair> fileNames;
@@ -57,7 +59,7 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
         this.order = order;
     }
 
-    public void setmCallback(OnFormFilled mCallback) {
+    public void setmCallback(OnCameraStarted mCallback) {
         this.mCallback = mCallback;
     }
 
@@ -84,6 +86,9 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
         transaction.commit();
 
         cameraFragment.setmCallback(this);
+
+
+        ((TextView)rootView.findViewById(R.id.field_order_id)).setText(order.getWorkOrderNumber());
 
         rootView.findViewById(R.id.button_image_capture).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +126,7 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
 
         if(mCallback == null) {
             try {
-                mCallback = (OnFormFilled)getActivity();
+                mCallback = (OnCameraStarted) getActivity();
             }
             catch (ClassCastException e) {
                 throw new ClassCastException("You must implement OnFormFilled interface in calling Activity.");
@@ -135,7 +140,7 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
 
         order.setImages(imagePairList);
         cameraFragment.closeCamera();
-        mCallback.onCompletion(order,true, FragmentContainerActivity.FRAGMENT_TYPE_WORK_ORDER_SUMMARY);
+        mCallback.imagesCaptured(imagePairList);
     }
 
     @Override

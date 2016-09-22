@@ -2,18 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/page_header"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <TextView
+            android:id="@+id/field_date"
+            android:text="Sept 15, 2016"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/field_name"
+            android:layout_marginLeft="10dp"
+            android:text="(Sam Bradford)"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/field_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+    </RelativeLayout>
+
     <android.support.v7.widget.CardView
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
+
         android:id="@+id/details_container_card_view"
-        android:layout_marginTop="3dp"
-        android:background="@android:color/darker_gray"
+        android:backgroundTint="@android:color/darker_gray"
         android:layout_below="@id/page_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         card_view:cardCornerRadius="3dp"
         card_view:cardUseCompatPadding="true"
@@ -22,6 +49,8 @@
 
         <RelativeLayout
             android:id="@+id/page_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -52,37 +81,11 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/container_closure_item_time_spent"
-                android:layout_below="@id/container_closure_item_closure_notes"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/label_time_spent"
-                    android:text="Time spent:"
-                    android:textSize="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/closure_time_spent"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:textSize="18dp"
-                    android:layout_below="@id/label_time_spent"
-                    android:text="3 hrs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </RelativeLayout>
 
 
             <RelativeLayout
                 android:id="@+id/container_closure_item_images"
-                android:layout_below="@id/container_closure_item_time_spent"
+                android:layout_below="@id/container_closure_item_closure_notes"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_width="match_parent"
@@ -96,8 +99,9 @@
                     android:layout_height="wrap_content" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="20dp"
                     android:scrollbars="horizontal"
                     android:id="@+id/closure_recycler_view"
                     android:layout_below="@id/label_closure_images"
@@ -106,9 +110,7 @@
 
                 </android.support.v7.widget.RecyclerView>
             </RelativeLayout>
-
         </RelativeLayout>
-
     </android.support.v7.widget.CardView>
 
 </LinearLayout>
