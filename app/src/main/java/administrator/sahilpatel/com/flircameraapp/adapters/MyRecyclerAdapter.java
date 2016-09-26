@@ -19,9 +19,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
 
     private static final String TAG = "MyRecyclerAdapter";
     private List<ImagePair> imagesList;
-
     public MyRecyclerAdapter(List<ImagePair> imagesList) {
-
         this.imagesList = imagesList;
     }
 

@@ -7,7 +7,10 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,15 +39,17 @@ public class FirebaseOrdersApi {
         return newRef.getKey();
     }
 
+    public String addOrder(Order order, OnSuccessListener<UploadTask.TaskSnapshot> successListener,
+                           OnProgressListener<UploadTask.TaskSnapshot> progressListener) {
+
+        return "";
+    }
+
     public void getAllOrders(ChildEventListener listener) {
        mRef.addChildEventListener(listener);
 
     }
 
-    public void getAllOrders(ValueEventListener listener) {
-        mRef.addListenerForSingleValueEvent(listener);
-
-    }
 
     public void fetchOrder(String key,ValueEventListener listener) {
         Firebase tRef = mRef.child("/"+key);
@@ -63,7 +68,7 @@ public class FirebaseOrdersApi {
         Firebase newRef = mRef.child(key+"/closure");
         newRef.removeValue();
 
-        changeOrderStatus(key, Order.STATUS_OPEN);
+        changeOrderStatus(key, Order.STATUS_NEW);
     }
 
     public void closeOrder(String key, Closure closure) {
@@ -76,28 +81,5 @@ public class FirebaseOrdersApi {
         Firebase newRef = mRef.child("/"+key+"/status");
         newRef.setValue(status);
     }
-
-    public String uploadImages(Context context,String order_id, Order order) {
-
-        List<ImagePair> pairs = order.getImages();
-        List<ImagePair> newPairs = new ArrayList<>();
-
-        for (ImagePair pair: pairs) {
-
-            String flair_image = pair.getFlirImage();
-            String flir_image_name = flair_image.substring(flair_image.lastIndexOf("\\")+1);
-
-            String regular_image = pair.getRegularImage();
-            String regular_imagE_name = regular_image.substring(regular_image.lastIndexOf("\\"+1));
-
-            Uri file1 = Uri.fromFile(new File(flair_image));
-            Uri file2 = Uri.fromFile(new File(regular_image));
-        }
-
-        return null;
-    }
-
-
-
 
 }

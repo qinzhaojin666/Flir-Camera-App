@@ -67,7 +67,7 @@
                 android:hint="Time Spent (hrs)"
                 android:imeActionId="@+id/next_field"
                 android:imeOptions="actionNext"
-                android:inputType="textCapCharacters"
+                android:inputType="numberDecimal"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:layout_width="match_parent"

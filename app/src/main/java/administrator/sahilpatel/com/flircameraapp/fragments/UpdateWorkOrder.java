@@ -1,8 +1,10 @@
 package administrator.sahilpatel.com.flircameraapp.fragments;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -133,6 +135,12 @@ public class UpdateWorkOrder extends Fragment {
             }
         });
 
+        rootView.findViewById(R.id.button_close_order).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCloseWindowDialog();
+            }
+        });
     }
 
     /**
@@ -182,5 +190,25 @@ public class UpdateWorkOrder extends Fragment {
             mCallback = (OnEditingWorkOrder)getActivity();
         }
         mCallback.updateWorkOrder(update);
+    }
+
+    private void showCloseWindowDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                .setTitle("Are you sure ?")
+                .setMessage("All your progress will be lost.")
+                .setPositiveButton(R.string.label_dialog_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getActivity().finish();
+                    }
+                })
+                .setNegativeButton(R.string.label_dialog_wait, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //  will dismiss the dialog.
+                    }
+                });
+        builder.show();
     }
 }

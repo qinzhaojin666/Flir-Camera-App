@@ -1,11 +1,14 @@
 package administrator.sahilpatel.com.flircameraapp.fragments;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,13 @@ import administrator.sahilpatel.com.flircameraapp.model.Order;
  */
 public class WorkOrderSummary extends Fragment {
 
+
+    /**
+     * Shows the complete summary of the order here. Called
+     * by AddOrderFragmentContainerActivity. Shows all the information that is
+     * stored in Order object.
+     */
+
     private static final String TAG = "WorkOrderSummary";
     private Order order;
     private OnFormFilled mCallback;
@@ -30,26 +40,26 @@ public class WorkOrderSummary extends Fragment {
     private TextView field_customer_name;
     private TextView field_customer_address;
     private TextView field_order_description;
+
+
     private RecyclerView recyclerView;
     private MyRecyclerAdapter adapter;
 
 
-    public WorkOrderSummary() {
-        // Required empty public constructor
-    }
+    public WorkOrderSummary() {}
 
+    /**
+     * Would be called right before the fragment is added to its container.
+     * Very important that it is assigned first.
+     * @param order, contains data
+     */
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    public void setmCallback(OnFormFilled mCallback) {
-        this.mCallback = mCallback;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_work_order_summary, container, false);
 
         if (order == null)
@@ -60,8 +70,8 @@ public class WorkOrderSummary extends Fragment {
         field_order_description = (TextView)rootView.findViewById(R.id.field_summary_work_order_description);
         field_customer_name = (TextView)rootView.findViewById(R.id.field_summary_customer_name);
         field_customer_address = (TextView)rootView.findViewById(R.id.field_summary_customer_address);
-        recyclerView = (RecyclerView)rootView.findViewById(R.id.summary_recycler_view);
 
+        recyclerView = (RecyclerView)rootView.findViewById(R.id.summary_recycler_view);
         adapter = new MyRecyclerAdapter(order.getImages());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -69,8 +79,16 @@ public class WorkOrderSummary extends Fragment {
 
         setSummaryData();
 
-        ((TextView)rootView.findViewById(R.id.field_order_id)).setText(order.getWorkOrderNumber());
+        //  Order id up top.
+        ((TextView)rootView.findViewById(R.id.field_order_id)).setText(
+                getActivity().getResources().getString(R.string.work_order_suffix)+order.getWorkOrderNumber()
+        );
+        setListeners(rootView);
 
+        return rootView;
+    }
+
+    private void setListeners(View rootView) {
         rootView.findViewById(R.id.button_summary_submit_order).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,9 +96,18 @@ public class WorkOrderSummary extends Fragment {
             }
         });
 
-        return rootView;
+        rootView.findViewById(R.id.button_close_order).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCloseWindowDialog();
+            }
+        });
     }
 
+    /**
+     * We set the data fetched from order object to the
+     * respective fields in the form.
+     */
     private void setSummaryData() {
 
         field_order_title.setText(order.getWorkOrderTitle());
@@ -91,6 +118,7 @@ public class WorkOrderSummary extends Fragment {
 
         recyclerView.setAdapter(adapter);
     }
+
 
     private void submitWorkOrderData() {
 
@@ -108,8 +136,31 @@ public class WorkOrderSummary extends Fragment {
                 throw new ClassCastException("You must implement OnFormFilled interface in calling Activity.");
             }
         }
-
+        Log.d(TAG, "submitWorkOrderData: "+"submiting form");
         mCallback.onCompletion(order,false, "");
+    }
+
+    /**
+     * Show a popup before closing the window. A warning message.
+     */
+    private void showCloseWindowDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                .setTitle("Are you sure ?")
+                .setMessage("All your progress will be lost.")
+                .setPositiveButton(R.string.label_dialog_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getActivity().finish();
+                    }
+                })
+                .setNegativeButton(R.string.label_dialog_wait, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //  will dismiss the dialog.
+                    }
+                });
+        builder.show();
     }
 
 }

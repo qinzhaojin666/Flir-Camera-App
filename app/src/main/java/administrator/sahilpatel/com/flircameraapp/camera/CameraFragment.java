@@ -112,6 +112,7 @@ public class CameraFragment extends Fragment {
         });
 
         file = new File(Environment.getExternalStorageDirectory()+"/");
+        setStorage_location(storage_location);
 
         return rootView;
     }
@@ -216,8 +217,8 @@ public class CameraFragment extends Fragment {
             captureRequestBuilder.set(CaptureRequest.JPEG_ORIENTATION,ORIENTATIONS.get(rotation));
 
             final String newFile = generateFileName();
-            file = new File(Environment.getExternalStorageDirectory()+"/"+storage_location+"/"+newFile);
 
+            file = new File(Environment.getExternalStorageDirectory()+"/"+storage_location+"/"+newFile);
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {

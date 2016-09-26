@@ -2,12 +2,9 @@ package administrator.sahilpatel.com.flircameraapp.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -16,7 +13,6 @@ import administrator.sahilpatel.com.flircameraapp.adapters.holders.OrderClosureH
 import administrator.sahilpatel.com.flircameraapp.adapters.holders.OrderDetailsHolder;
 import administrator.sahilpatel.com.flircameraapp.adapters.holders.OrderHolder;
 import administrator.sahilpatel.com.flircameraapp.adapters.holders.OrderUpdateHolder;
-import administrator.sahilpatel.com.flircameraapp.model.Closure;
 import administrator.sahilpatel.com.flircameraapp.model.Order;
 import administrator.sahilpatel.com.flircameraapp.model.Update;
 
@@ -70,9 +66,10 @@ public class UpdatesRecyclerAdapter extends RecyclerView.Adapter<OrderHolder>{
     public int getItemViewType(int position) {
 
 
-        if (position == 0) {
+        if(position == 0) {
             return VIEW_TYPE_DETAILS;
         }
+
 
         if(order.getClosure() != null) {
             if(position == getItemCount()-1){
@@ -110,6 +107,8 @@ public class UpdatesRecyclerAdapter extends RecyclerView.Adapter<OrderHolder>{
 
         return 1;
     }
+
+
 
 //    @Override
 //    public int getItemCount() {

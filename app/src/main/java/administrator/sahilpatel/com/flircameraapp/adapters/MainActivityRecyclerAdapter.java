@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.badoualy.stepperindicator.StepperIndicator;
+
 import java.util.List;
 import java.util.Map;
 
@@ -17,12 +19,10 @@ import administrator.sahilpatel.com.flircameraapp.R;
 import administrator.sahilpatel.com.flircameraapp.model.ImagePair;
 import administrator.sahilpatel.com.flircameraapp.model.Order;
 
-/**
- * Created by Administrator on 9/16/2016.
- */
+
 public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivityRecyclerAdapter.MyViewHolder> {
 
-    private static final String TAG = "MainActivityRecyclerAdapter";
+    private static final String TAG = "MainActivityAdapter";
     private List<Order> orderList;
 
     public MainActivityRecyclerAdapter(List<Order> orderList) {
@@ -48,10 +48,13 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
         holder.work_order_assigned_to.setText("Assigned to: "+order.getAssignedTo());
 
         ImagePair firstImage = order.getImages().get(0);
+//        Log.d(TAG, "onBindViewHolder: "+firstImage.getFlirImage());
         Bitmap scaled = this.scaleDownImage(BitmapFactory.decodeFile(firstImage.getFlirImage()));
         holder.flir_image.setImageBitmap(scaled);
         scaled = this.scaleDownImage(BitmapFactory.decodeFile(firstImage.getRegularImage()));
         holder.regular_image.setImageBitmap(scaled);
+        holder.indicator.setCurrentStep(this.stepperIndicatorValue(order.getStatus()));
+        holder.work_order_status.setText(order.getStatus());
     }
 
     @Override
@@ -66,6 +69,8 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
         TextView work_order_title;
         TextView work_order_number;
         TextView work_order_assigned_to;
+        TextView work_order_status;
+        StepperIndicator indicator;
 
         public MyViewHolder(View itemView) {
 
@@ -75,7 +80,9 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
             work_order_title = (TextView)itemView.findViewById(R.id.field_item_work_order_title);
             work_order_number = (TextView)itemView.findViewById(R.id.field_item_work_order_number);
             work_order_assigned_to = (TextView)itemView.findViewById(R.id.field_item_work_order_assigned_to);
-
+            work_order_status = (TextView)itemView.findViewById(R.id.field_indicator_status);
+            indicator = (StepperIndicator) itemView.findViewById(R.id.stepper_indicator);
+            indicator.setStepCount(3);
         }
     }
 
@@ -89,5 +96,16 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
             e.printStackTrace();
         }
         return bitmap;
+    }
+
+    private int stepperIndicatorValue(String status) {
+
+        switch (status) {
+            case Order.STATUS_NEW : return 1;
+            case Order.STATUS_IN_PROGRESS : return 2;
+            case Order.STAUS_CLOSED : return 3;
+        }
+
+        return 2;
     }
 }

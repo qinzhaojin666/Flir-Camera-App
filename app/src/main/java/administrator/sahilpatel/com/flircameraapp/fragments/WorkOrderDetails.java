@@ -1,8 +1,10 @@
 package administrator.sahilpatel.com.flircameraapp.fragments;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,27 +18,31 @@ import administrator.sahilpatel.com.flircameraapp.R;
 import administrator.sahilpatel.com.flircameraapp.adapters.UpdatesRecyclerAdapter;
 import administrator.sahilpatel.com.flircameraapp.listeners.OnEditingWorkOrder;
 import administrator.sahilpatel.com.flircameraapp.model.Order;
-import administrator.sahilpatel.com.flircameraapp.support.CustomLayoutManager;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class WorkOrderDetails extends Fragment {
 
-    private Order order;
+    /**
+     * Contains the whole timeline of order updates and details
+     * for a particular order.
+     */
 
+    private Order order;
     private OnEditingWorkOrder mCallback;
 
     private RecyclerView recyclerView;
-    //private RecyclerView recyclerView;
     private UpdatesRecyclerAdapter adapter;
 
+    /**
+     * We need two sets of buttons, one to show when the order is open,
+     * one to show when the order is closed.
+     */
     private LinearLayout buttonSet;
     private LinearLayout button;
 
-    public WorkOrderDetails() {
-        // Required empty public constructor
-    }
+    public WorkOrderDetails() {}
 
     public void setmCallback(OnEditingWorkOrder mCallback) {
         this.mCallback = mCallback;
@@ -49,7 +55,6 @@ public class WorkOrderDetails extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View rootView = inflater.inflate(R.layout.fragment_work_order_details, container, false);
 
@@ -74,8 +79,12 @@ public class WorkOrderDetails extends Fragment {
 
     private void setListeners(View rootView) {
 
+        /**
+         * based on the status of our order, we hide one
+         * set of buttons and show another set.
+         */
         switch (order.getStatus()) {
-            case Order.STATUS_OPEN :
+            case Order.STATUS_NEW :
                 buttonSet.setVisibility(View.VISIBLE);
                 button.setVisibility(View.GONE);
                 break;
@@ -105,7 +114,15 @@ public class WorkOrderDetails extends Fragment {
             }
         });
 
+        rootView.findViewById(R.id.button_close_order).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCloseWindowDialog();
+            }
+        });
+
     }
+
 
     private void reOpenWorkOrder() {
 
@@ -132,5 +149,27 @@ public class WorkOrderDetails extends Fragment {
         }
 
         mCallback.closeWorkOrder(null);
+    }
+
+    /**
+     * Shows a warning dialog when you try to close the window.
+     */
+    private void showCloseWindowDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
+                .setMessage("Are you sure ?")
+                .setPositiveButton(R.string.label_dialog_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getActivity().finish();
+                    }
+                })
+                .setNegativeButton(R.string.label_dialog_wait, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //  will dismiss the dialog.
+                    }
+                });
+        builder.show();
     }
 }

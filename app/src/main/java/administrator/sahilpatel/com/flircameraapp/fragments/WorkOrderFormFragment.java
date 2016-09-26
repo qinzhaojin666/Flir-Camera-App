@@ -30,23 +30,15 @@ public class WorkOrderFormFragment extends Fragment {
 
     private OnFormFilled mCallback;
 
-    public WorkOrderFormFragment() {
-        // Required empty public constructor
-
-    }
+    public WorkOrderFormFragment() {}
 
     public void setOrder(Order order) {
         this.order = order;
     }
 
-    public void setmCallback(OnFormFilled mCallback) {
-        this.mCallback = mCallback;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_work_order_form, container, false);
 
         field_order_title = (EditText)rootView.findViewById(R.id.field_work_order_title);
@@ -60,8 +52,6 @@ public class WorkOrderFormFragment extends Fragment {
     }
 
     private void setListeners(final View rootView) {
-
-
 
         rootView.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +107,10 @@ public class WorkOrderFormFragment extends Fragment {
         mCallback.onCompletion(order,true, AddOrderFragmentContainerActivity.FRAGMENT_TYPE_FLIR_CAMERA);
     }
 
+    /**
+     * Shown when the user tries to close the form. Shows a warning
+     * dialog with message.
+     */
     private void showCloseWindowDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
@@ -136,5 +130,4 @@ public class WorkOrderFormFragment extends Fragment {
                 });
         builder.show();
     }
-
 }

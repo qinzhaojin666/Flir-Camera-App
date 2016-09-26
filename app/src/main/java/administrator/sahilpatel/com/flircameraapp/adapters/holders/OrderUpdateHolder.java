@@ -44,6 +44,7 @@ public class OrderUpdateHolder extends OrderHolder {
     public void bindData(Order order, int position) {
 
         position = position - 1;
+//        position = position - 2;
         Update update = order.getUpdates().get(position);
 
         adapter = new MyRecyclerAdapter(update.getImagePairList());

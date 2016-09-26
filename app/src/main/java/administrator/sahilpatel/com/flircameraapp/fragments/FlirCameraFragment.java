@@ -3,6 +3,7 @@ package administrator.sahilpatel.com.flircameraapp.fragments;
 
 import android.content.DialogInterface;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -24,12 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import administrator.sahilpatel.com.flircameraapp.R;
-import administrator.sahilpatel.com.flircameraapp.activities.AddOrderFragmentContainerActivity;
 import administrator.sahilpatel.com.flircameraapp.adapters.MyRecyclerAdapter;
 import administrator.sahilpatel.com.flircameraapp.camera.CameraFragment;
+import administrator.sahilpatel.com.flircameraapp.connection.FirebaseStorageApi;
 import administrator.sahilpatel.com.flircameraapp.listeners.ImageCaptureListener;
 import administrator.sahilpatel.com.flircameraapp.listeners.OnCameraStarted;
-import administrator.sahilpatel.com.flircameraapp.listeners.OnFormFilled;
 import administrator.sahilpatel.com.flircameraapp.model.ImagePair;
 import administrator.sahilpatel.com.flircameraapp.model.Order;
 
@@ -38,41 +38,41 @@ import administrator.sahilpatel.com.flircameraapp.model.Order;
  */
 public class FlirCameraFragment extends Fragment implements ImageCaptureListener{
 
+    /**
+     * This fragment handles taking picture and saving it into
+     * our default directory.
+     */
+
     private CameraFragment cameraFragment;
     private static final String TAG = "FlirCameraFragment";
+    /**
+     * Directory where we need to store the images.
+     */
     private String directory_name = "Flir Camera App";
-
 
     private Order order;
     private OnCameraStarted mCallback;
     View rootView;
 
     private List<ImagePair> fileNames;
-    private RecyclerView recyclerView;
     private MyRecyclerAdapter adapter;
 
-    public FlirCameraFragment() {
-        // Required empty public constructor
-    }
+    public FlirCameraFragment() {}
 
     public void setOrder(Order order) {
         this.order = order;
     }
 
-    public void setmCallback(OnCameraStarted mCallback) {
-        this.mCallback = mCallback;
-    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View rootView = inflater.inflate(R.layout.fragment_flair_camera, container, false);
         this.rootView = rootView;
         cameraFragment = new CameraFragment();
-
         fileNames = new ArrayList<>();
 
-
+        RecyclerView recyclerView;
         recyclerView = (RecyclerView)rootView.findViewById(R.id.flair_recycler_view);
         adapter = new MyRecyclerAdapter(fileNames);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -80,15 +80,26 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-
+        /**
+         * Adding the surfaceView and associated code into a
+         * fragment container. The default camera is just a
+         * Surface view without any buttons.
+         */
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(R.id.camera_container,cameraFragment);
         transaction.commit();
 
         cameraFragment.setmCallback(this);
 
+        //  Order id up top.
+        String orderNo = getActivity().getResources().getString(R.string.work_order_suffix)+order.getWorkOrderNumber();
+        ((TextView)rootView.findViewById(R.id.field_order_id)).setText(orderNo);
 
-        ((TextView)rootView.findViewById(R.id.field_order_id)).setText(order.getWorkOrderNumber());
+        setListeners(rootView);
+        return rootView;
+    }
+
+    private void setListeners(View rootView) {
 
         rootView.findViewById(R.id.button_image_capture).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,21 +112,21 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
             @Override
             public void onClick(View view) {
                 showCloseWindowDialog();
-
             }
         });
 
         rootView.findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 sendClickedImages();
             }
         });
-
-        return rootView;
     }
 
+    /**
+     * All the taken images are saved in an array list. This method
+     * sends that array list to the calling activity.
+     */
     private void sendClickedImages() {
 
         /**
@@ -143,18 +154,40 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
         mCallback.imagesCaptured(imagePairList);
     }
 
+
+    /**
+     * When the activity is getting closed, we must manually
+     * close the camera. If we fail to do so, the camera would crash
+     * the next time user clicks on Add Order.
+     */
     @Override
     public void onStop() {
         cameraFragment.closeCamera();
         super.onStop();
     }
 
+    /**
+     * Called when we have successfully captured an image. The url where
+     * the image was saved is returned. We can then use this url to
+     * upload the image, or show this image on recyclerView.
+     * @param name, url of image.
+     */
     @Override
     public void onImageCaptured(String name) {
 
         Toast.makeText(getContext(), "Image saved : "+name, Toast.LENGTH_SHORT).show();
         String path = new File(Environment.getExternalStorageDirectory()+"/"+directory_name+"/"+name).getPath();
+
+        Uri file = Uri.fromFile(new File(path));
+
+        new FirebaseStorageApi().uploadImage(path);
+//        Log.d(TAG, "onImageCaptured: "+path);
         fileNames.add(new ImagePair(path,path));
+        /**
+         * onImageCaptured is a callback method which is called asynchronously.
+         * However, when we add the image to ArrayList, the process of notifying
+         * the adapter about new element must happen on main thread.
+         */
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -164,9 +197,13 @@ public class FlirCameraFragment extends Fragment implements ImageCaptureListener
                 }
             }
         });
-
     }
 
+    /**
+     * In case we were not able to take a picture, an error message is returned.
+     * This error message is shown on console.
+     * @param error, the error message
+     */
     @Override
     public void onError(String error) {
         Toast.makeText(getContext(), "Image not saved ", Toast.LENGTH_SHORT).show();

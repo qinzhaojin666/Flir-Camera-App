@@ -5,7 +5,7 @@
     android:layout_marginLeft="3dp"
     android:layout_marginRight="3dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/page_header"
@@ -101,7 +101,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:scrollbars="horizontal"
                     android:id="@+id/closure_recycler_view"
                     android:layout_below="@id/label_closure_images"

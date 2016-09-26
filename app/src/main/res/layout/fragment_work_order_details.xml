@@ -40,10 +40,66 @@
             <!--android:layout_height="wrap_content"-->
             <!--layout="@layout/details_item_layout" />-->
 
+        <RelativeLayout
+            android:id="@+id/container_all_buttons"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/details_container_buttons"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/button_details_update_order"
+                    android:text="UPDATE WORK ORDER"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_toRightOf="@id/button_details_update_order"
+                    android:id="@+id/button_details_close_order"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:text="CLOSE WORK ORDER"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/details_container_button"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/button_details_reopen_work_order"
+                    android:text="RE-OPEN WORK ORDER"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_below="@id/page_header"
+            android:layout_above="@id/container_all_buttons"
             android:scrollbars="vertical"
             android:id="@+id/details_recycler_view"
             android:layout_width="match_parent"
@@ -51,67 +107,6 @@
         </android.support.v7.widget.RecyclerView>
 
 
-
-        <!--<administrator.sahilpatel.com.flircameraapp.support.CustomRecyclerView-->
-            <!--android:layout_below="@id/item_details_layout"-->
-            <!--android:scrollbars="vertical"-->
-            <!--android:id="@+id/details_recycler_view"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-        <!--</administrator.sahilpatel.com.flircameraapp.support.CustomRecyclerView>-->
-
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:paddingBottom="10dp"
-            android:layout_below="@id/details_recycler_view"
-            android:layout_marginTop="20dp"
-            android:id="@+id/details_container_buttons"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/button_details_update_order"
-                android:text="UPDATE WORK ORDER"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:layout_toRightOf="@id/button_details_update_order"
-                android:id="@+id/button_details_close_order"
-                android:textColor="@android:color/holo_red_dark"
-                android:text="CLOSE WORK ORDER"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:paddingBottom="10dp"
-            android:layout_below="@id/details_recycler_view"
-            android:layout_marginTop="20dp"
-            android:id="@+id/details_container_button"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/button_details_reopen_work_order"
-                android:text="RE-OPEN WORK ORDER"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
 
     </RelativeLayout>
 </FrameLayout>

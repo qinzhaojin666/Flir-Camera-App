@@ -12,7 +12,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Order{
 
-    public static final String STATUS_OPEN = "OPEN";
+    public static final String STATUS_NEW = "NEW";
+    public static final String STATUS_IN_PROGRESS = "IN-PROGRESS";
     public static final String STAUS_CLOSED ="CLOSED";
 
     private String orderId;
@@ -33,7 +34,7 @@ public class Order{
     public Order() {
         images = new ArrayList<>();
         updates = new ArrayList<>();
-        status = STATUS_OPEN;
+        status = STATUS_NEW;
     }
 
     public Order(String workOrderTitle, String workOrderNumber, String workOrderDescription,
